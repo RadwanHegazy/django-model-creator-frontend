@@ -1,0 +1,87 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Django Model Creator</title>
+    <link rel="stylesheet" href="{% static 'style/main.css' %}">
+</head>
+<body>
+
+
+    <h1>Django Model Creator</h1>
+    
+    <div class="container">
+
+        <input type="text" placeholder="App Name" id="app_name">
+        <input type="text" placeholder="Model Name" id="app_model">
+
+        <div class="in">
+            <input type="checkbox" id="has_uid">
+            <p>Make UUID as id</p>
+        </div>
+
+        <small class="sperator"></small>
+        <p class="des">Fields For <span id="model_name_view">--</span> : <span id="fields_counter">0</span></p>
+
+        <input placeholder="Field Name" type="text" id="field">
+
+        <select name="" id="type">
+            <option  selected>Type</option>
+            {% for i in fields %}
+                <option value="{{i}}">{{i}}</option>
+            {% endfor %}
+        </select>
+
+        <button id="add_field">Add Field</button>
+
+        <small class="sperator"></small>
+        <button id="done">Create Model</button>
+
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+    <script src="{% static 'js/main.js' %}"></script>
+    
+    <script>
+        // done process
+        var donBtn = document.getElementById('done');
+
+        donBtn.addEventListener('click',()=>{
+
+            var PostedData = {
+                app_name : app_name.value,
+                model_name : app_model.value,
+                has_uuid : has_uuid,
+                fields : fields
+            };
+
+            // postData("http://127.0.0.1:8000/", PostedData).then((data) => {
+            //     console.log(data); // JSON data parsed by `data.json()` call
+            // });
+            form.append('fields', f_string)
+            $.ajax({
+                method : "POST",
+                processData: false,
+                contentType: false,
+                cache: false,
+                enctype: 'multipart/form-data',
+                url : ".",
+                data:form,
+                success:function(s){
+                    console.log(s)
+                    if ('id' in s){
+                        window.location.href = '/code/' + s.id + "/";
+                    }else{
+                        alert('there is an error')
+                    }
+                }
+            })
+            
+        })
+    </script>
+
+</body>
+</html>

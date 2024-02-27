@@ -1,0 +1,27 @@
+code {
+    width: auto;
+    min-height: 100px;
+    background-color: #000;
+    max-height: 300px;
+    color: rgb(9, 242, 9);
+    padding: 13px 10px;
+    border-radius: 12px;
+    overflow-y: auto;
+}
+
+
+
+.btns {
+    display: flex;
+    gap: 10px;
+}
+
+.btns button {
+    flex: 1;
+}
+
+
+.container{
+    min-width: 400px;
+    width: auto;
+}

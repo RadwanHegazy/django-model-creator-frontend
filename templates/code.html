@@ -1,0 +1,48 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Model Code</title>
+    <link rel="stylesheet" href="{% static 'style/main.css' %}">
+    <link rel="stylesheet" href="{% static 'style/code.css' %}">
+</head>
+<body>
+
+
+    <h1>Code for your model</h1>
+    
+    <div class="container">
+        
+        <code>
+            <pre>{{body}}</pre>
+        </code>
+        
+        <div class="sperator"></div>
+        
+        <div class="btns">
+            <button id="back">Back</button>
+            <button id="copy">Copy</button>
+        </div>
+
+    </div>
+
+
+    <script>
+        var copyBtn = document.getElementById('copy');
+        var backBtn = document.getElementById('back');
+    
+        backBtn.addEventListener('click',()=>{
+            window.location.href = '/';
+        })
+
+        copyBtn.addEventListener('click',()=>{
+            var text = document.querySelector('code pre');
+            navigator.clipboard.writeText(text.textContent);
+            alert('copied successfully !')
+        })
+
+    </script>
+</body>
+</html>
